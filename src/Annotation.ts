@@ -112,11 +112,16 @@ export class Annotation extends ManifestResource {
 
   getTarget(): any  {
     const rawTarget = this.getPropertyAsObject("target");
+    console.log("rawTarget " + JSON.stringify(rawTarget));
     if (rawTarget.isIRI) return rawTarget;
     
     if ( rawTarget.type && rawTarget.type == "SpecificResource" )
     {
     	return new SpecificResource(rawTarget, this.options);
+    }
+    else if ( ["Scene", "Canvas"].includes( rawTarget.type ))
+    {
+        return rawTarget;
     }
     else
     {
