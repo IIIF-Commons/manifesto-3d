@@ -111,7 +111,6 @@ var Annotation = /** @class */ (function (_super) {
     };
     Annotation.prototype.getTarget = function () {
         var rawTarget = this.getPropertyAsObject("target");
-        console.log("rawTarget " + JSON.stringify(rawTarget));
         if (rawTarget.isIRI)
             return rawTarget;
         if (rawTarget.type && rawTarget.type == "SpecificResource") {
