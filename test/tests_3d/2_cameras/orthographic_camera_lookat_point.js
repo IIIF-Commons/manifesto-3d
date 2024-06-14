@@ -48,7 +48,7 @@ describe('orthographic_camera_lookat_point', function() {
         expect(camera.isCamera).to.equal(true);
         expect(camera.isPerspectiveCamera).to.not.be.ok;
         expect(camera.isModel).to.equal(false,"checking isModel=false");
-        expect(camera.Height).to.equal(3.5);
+        expect(camera.ViewHeight).to.equal(3.5);
         
         let lookedAt = camera.LookAt;
         expect( lookedAt , "find the lookAt annotation.id?").to.exist;

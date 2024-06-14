@@ -44,23 +44,26 @@ export class Camera extends AnnotationBody {
   /**
   @returns full linear size of orthographic viewport in vertical direction.
   linear unit is Scene global unit of measure
+  
+  Name of this property was originally Height, has been changed
+  at this revision to ViewHeight:
+  See issues at https://github.com/IIIF/api/issues/2289
   **/
-  getHeight(): number | undefined 
+  getViewHeight(): number | undefined 
   {
     if (this.isOrthographicCamera){
-        var value = this.getProperty("height");
+        // the term viewHeight for the resource Type was suggested
+        // in https://github.com/IIIF/api/issues/2289#issuecomment-2161608587
+        var value = this.getProperty("viewHeight");
         if (value) return value;
         else return undefined;
     }
     else return undefined;
   }
   
-  get Height(): number | undefined {return this.getHeight();}
-  /**
-  Full angular size of perspective viewport in vertical direction.
-  Angular unit is degrees
-  **/
-  get FieldOfView(): number | undefined { return this.getFieldOfView();}
+  get ViewHeight(): number | undefined {return this.getViewHeight();}
+  
+  
   /**
   * @return : if not null, is either a PointSelector, or an object
   * with an id matching the id of an Annotation instance.
