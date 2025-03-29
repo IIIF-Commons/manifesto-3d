@@ -44,7 +44,7 @@
     "isomorphic-unfetch": "^3.0.0",
     "lodash": "^4.17.21",
     "threejs-math": "^0.147"
-   },
+  },
   "directories": {
     "test": "test"
   },
@@ -57,6 +57,7 @@
     "rimraf": "^5.0.5",
     "serve-static": "^2.2.0",
     "ts-loader": "^9.5.1",
+    "typedoc": "^0.28.1",
     "typescript": "~5.3.3",
     "webpack": "^5.89.0",
     "webpack-cli": "^5.1.4"
