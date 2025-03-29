@@ -1,6 +1,4 @@
-//import { colorString } from "color-string"
-
-let colorString = require("color-string");
+import  colorString  from "color-string"
 
 /**
  * class structure with red, green, blue values in 0-255 range
