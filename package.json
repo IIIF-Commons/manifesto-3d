@@ -41,21 +41,25 @@
     "@edsilv/http-status-codes": "^1.0.3",
     "@iiif/vocabulary": "^1.0.26",
     "color-string": "1.9",
-    "threejs-math": "^0.147",
-    "lodash" : "^4.17.21",
-    "isomorphic-unfetch" : "^3.0.0"
-  },
+    "isomorphic-unfetch": "^3.0.0",
+    "lodash": "^4.17.21",
+    "threejs-math": "^0.147"
+   },
   "directories": {
     "test": "test"
   },
   "devDependencies": {
+    "chai": "^5.2.0",
+    "cross-env": "^7.0.3",
+    "dts-bundle-generator": "^9.1.0",
+    "finalhandler": "^2.1.0",
+    "mocha": "^11.1.0",
+    "rimraf": "^5.0.5",
+    "serve-static": "^2.2.0",
+    "ts-loader": "^9.5.1",
     "typescript": "~5.3.3",
-    "rimraf" : "^5.0.5",
     "webpack": "^5.89.0",
-    "webpack-cli": "^5.1.4",
-    "ts-loader" : "^9.5.1",
-    "cross-env" : "^7.0.3",
-    "dts-bundle-generator" : "^9.1.0"
+    "webpack-cli": "^5.1.4"
   },
   "publishConfig": {
     "access": "public"
