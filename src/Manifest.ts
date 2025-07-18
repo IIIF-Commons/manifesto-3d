@@ -2,7 +2,7 @@ import {
   ViewingHint,
   Behavior,
   ViewingDirection,
-  ServiceProfile
+  ServiceProfile,
 } from "@iiif/vocabulary/dist-commonjs";
 import {
   Canvas,
@@ -14,22 +14,22 @@ import {
   Service,
   TreeNode,
   TreeNodeType,
-  Utils
+  Utils,
 } from "./internal";
 
 /**
-* @remarks Scenes are conveniently retrieved from a Manifest by iterating through
-* Sequence in the Manifest, inner loop the Scenes in each sequence
-* @see {@link Sequence }
-*
-* @example
-* var manifest: Manifest;
-* function doSomethingWithScene(scene:Scene)...
-* ...
-* foreach(var seq:Sequence of manifest.getSequences()
-*   foreach(var scene : Scene of seq.getScenes() 
-*     doSomethingWithScene(scene);
-**/
+ * @remarks Scenes are conveniently retrieved from a Manifest by iterating through
+ * Sequence in the Manifest, inner loop the Scenes in each sequence
+ * @see {@link Sequence }
+ *
+ * @example
+ * var manifest: Manifest;
+ * function doSomethingWithScene(scene:Scene)...
+ * ...
+ * foreach(var seq:Sequence of manifest.getSequences()
+ *   foreach(var scene : Scene of seq.getScenes()
+ *     doSomethingWithScene(scene);
+ **/
 export class Manifest extends IIIFResource {
   public index: number = 0;
   private _allRanges: Range[] | null = null;
@@ -47,7 +47,7 @@ export class Manifest extends IIIFResource {
         this._parseRanges(range, String(i));
       }
     }
-    
+
     // initialization the cached _annotationIdMap to null
     // it will be populated if and only if client calls make a request
     // to the getter annotationIdMap
@@ -156,7 +156,6 @@ export class Manifest extends IIIFResource {
   //}
 
   private _parseRanges(r: any, path: string, parentRange?: Range): void {
-    let range: Range;
     let id: string | null = null;
 
     if (typeof r === "string") {
@@ -169,7 +168,7 @@ export class Manifest extends IIIFResource {
       return;
     }
 
-    range = new Range(r, this.options);
+    const range: Range = new Range(r, this.options);
     range.parentRange = parentRange;
     range.path = path;
 
@@ -267,9 +266,9 @@ export class Manifest extends IIIFResource {
     return null;
   }
 
-/**
-* @returns Array of Sequence instances
-**/
+  /**
+   * @returns Array of Sequence instances
+   **/
   getSequences(): Sequence[] {
     if (this.items.length) {
       return this.items;
@@ -277,7 +276,7 @@ export class Manifest extends IIIFResource {
 
     // IxIF mediaSequences overrode sequences, so need to be checked first.
     // deprecate this when presentation 3 ships
-    let items: any = this.__jsonld.mediaSequences || this.__jsonld.sequences;
+    const items: any = this.__jsonld.mediaSequences || this.__jsonld.sequences;
 
     if (items) {
       for (let i = 0; i < items.length; i++) {
@@ -338,31 +337,29 @@ export class Manifest extends IIIFResource {
   getViewingHint(): ViewingHint | null {
     return this.getProperty("viewingHint");
   }
-  
-  _annotationIdMap : any;
-  
+
+  _annotationIdMap: any;
+
   /**
-  * Developer Note: The concept of the "id map" appear in the 
-  * JSON-LD specification https://www.w3.org/TR/json-ld11/#dfn-id-map
-  * This functionality may be available as well in the 'nodeMap' code of the
-  * digitalbazaar/jsonld library
-  *
-  * this very simplified version just returns a mao of id -> Annotation nodes
-  * in manifest
-  *
-  * THe annotationIdMap is a Javascript object whose property names are
-  * IRI (id values) and property values are instances of the Annotation class
-  **/
+   * Developer Note: The concept of the "id map" appear in the
+   * JSON-LD specification https://www.w3.org/TR/json-ld11/#dfn-id-map
+   * This functionality may be available as well in the 'nodeMap' code of the
+   * digitalbazaar/jsonld library
+   *
+   * this very simplified version just returns a mao of id -> Annotation nodes
+   * in manifest
+   *
+   * THe annotationIdMap is a Javascript object whose property names are
+   * IRI (id values) and property values are instances of the Annotation class
+   **/
   get annotationIdMap(): Object {
-    if (this._annotationIdMap == null){
-        
-        this._annotationIdMap = {};
-        for ( var seq of this.getSequences() )
-            for (var scene of seq.getScenes() )
-                for (var anno of scene.getContent() )
-                    this._annotationIdMap[anno.id] = anno;
-          
+    if (this._annotationIdMap == null) {
+      this._annotationIdMap = {};
+      for (var seq of this.getSequences())
+        for (var scene of seq.getScenes())
+          for (var anno of scene.getContent())
+            this._annotationIdMap[anno.id] = anno;
     }
-    return this._annotationIdMap;  
+    return this._annotationIdMap;
   }
 }
