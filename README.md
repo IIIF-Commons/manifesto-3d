@@ -75,3 +75,16 @@ distributed from [vincentmarchetti/manifesto#3dtsg-main]() there were these chan
 #### To package.json version 4.3.0-draft3dapi.0.5.0
 
 1. Implement lookAt property of Camera class and of Light class.
+
+### Synchronize with IIIF-Commons/manifesto-3d
+
+(cadmium): git remote add iiif-remote git@github.com:IIIF-Commons/manifesto-3d.git
+(cadmium): git fetch iiif-remote master
+From github.com:IIIF-Commons/manifesto-3d
+ * branch            master     -> FETCH_HEAD
+ * [new branch]      master     -> iiif-remote/master
+(cadmium): git checkout master
+branch 'master' set up to track 'iiif-remote/master'.
+Switched to a new branch 'master'
+(cadmium): 
+
