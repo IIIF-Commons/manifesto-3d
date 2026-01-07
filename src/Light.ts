@@ -12,7 +12,7 @@ export class Light extends AnnotationBody {
   }
 
   getColor(): Color {
-    var hexColor = this.getProperty("color");
+    var hexColor = this.getPropertyFromSelfOrSource("color");
     if (hexColor) return Color.fromCSS(hexColor);
     else return new Color([255, 255, 255]); // white light
   }
@@ -35,7 +35,7 @@ export class Light extends AnnotationBody {
    * This code will implement a default intensity of 1.0
    **/
   getIntensity(): number {
-    var intObject = this.getProperty("intensity");
+    var intObject = this.getPropertyFromSelfOrSource("intensity");
     if (intObject) {
       try {
         if (!(intObject.type === "Value" && intObject.unit === "relative"))
@@ -72,7 +72,7 @@ export class Light extends AnnotationBody {
   **/
   getAngle(): number | undefined {
     if (this.isSpotLight()) {
-      return Number(this.getProperty("angle"));
+      return Number(this.getPropertyFromSelfOrSource("angle"));
     } else {
       return undefined;
     }
