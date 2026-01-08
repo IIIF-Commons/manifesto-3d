@@ -136,6 +136,7 @@ function run_iiif3d_tests(){
         importTest('ambient_green_light', './tests_3d/3_lights/ambient_green_light.js');
         importTest('directional light', './tests_3d/3_lights/direction_light_transform_rotate.js');
         importTest('spot light', './tests_3d/3_lights/spotlight_lookat_point.js');
+        importTest('missing transform', './tests_3d/3_lights/multiple_lights_with_intensities_and_colors.js');
     });
     
     describe("2_cameras" , function(){
