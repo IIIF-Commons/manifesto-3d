@@ -20,6 +20,9 @@ const DisplayedTypes: string[] = [
   "Audio",
   "Model",
   "Video",
+  "Canvas",
+  "Sound",
+  "Text"
 ];
 
 export class AnnotationBodyParser {

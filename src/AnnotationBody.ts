@@ -117,6 +117,18 @@ export class AnnotationBody extends ManifestResource {
     }
   }
 
+  // Some labels may be on this object or (for SpecificResource) in source object
+  getLabelFromSelfOrSource(): any {
+    if (
+      this.isSpecificResource() &&
+      this.getSource() instanceof AnnotationBody
+    ) {
+      return (this.getSource() as AnnotationBody).getLabel();
+    } else {
+      return this.getLabel();
+    }
+  }
+
   // Get the first source available on the annotation body, if any
   getSource(): AnnotationBody | string | null {
     const source: object = [].concat(this.getPropertyAsObject("source"))[0];
@@ -136,6 +148,14 @@ export class AnnotationBody extends ManifestResource {
     return this.getType() === ExternalResourceType.MODEL;
   }
 
+  isSound(): boolean {
+    return this.getType() === ExternalResourceType.SOUND;
+  }
+
+  isSoundCaption(): boolean {
+    return this.getType() === ExternalResourceType.TEXT && this.getProperty("format").toLowerCase() === "text/vtt";
+  }
+  
   isSpecificResource(): boolean {
     return this.getProperty("type") === "SpecificResource";
   }
