@@ -38,9 +38,9 @@ export class Light extends AnnotationBody {
     var intObject = this.getPropertyFromSelfOrSource("intensity");
     if (intObject) {
       try {
-        if (!(intObject.type === "Value" && intObject.unit === "relative"))
+        if (!(intObject.type === "Quantity" && intObject.unit === "relative"))
           throw new Error();
-        return intObject.value as number;
+        return intObject.quantityValue as number;
       } catch (err) {
         throw new Error(
           "unable to interpret raw intensity object " +
