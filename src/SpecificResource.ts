@@ -87,6 +87,7 @@ export class SpecificResource extends ManifestResource {
 
       if (item) {
         if (item["type"] === "PointSelector") return new PointSelector(item);
+        if (item["type"] === "PolygonZSelector") return null;
       }
       throw new Error(
         "unable to resolve SpecificResource selector " +

@@ -66,11 +66,11 @@ export class AnnotationBody extends ManifestResource {
   }
 
   getWidth(): number {
-    return this.getProperty("width");
+    return this.getPropertyFromSelfOrSource("width");
   }
 
   getHeight(): number {
-    return this.getProperty("height");
+    return this.getPropertyFromSelfOrSource("height");
   }
 
   getTransform(): Transform[] | null {

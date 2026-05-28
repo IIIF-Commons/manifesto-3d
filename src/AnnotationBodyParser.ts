@@ -21,6 +21,7 @@ const DisplayedTypes: string[] = [
   "Model",
   "Video",
   "Canvas",
+  "Scene",
   "Sound",
   "Text"
 ];
