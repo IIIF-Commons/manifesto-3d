@@ -10,6 +10,10 @@ var MediaType = require('@iiif/vocabulary/dist-commonjs/').MediaType;
 
 let manifest,  sequence, scene , model, body, annotations;
 
+/*
+Dev note 28 May 2026 by VJM : This test should be changed so that it uses
+a manifest under the IIIF/3d main branch manifests. 
+*/
 let manifest_url = {
         local: "http://localhost:3001/model_origin.json",
         remote : "https://raw.githubusercontent.com/vincentmarchetti/iiif3dtsg/spotlight-manifest/manifests/3_lights/spotlight_lookat_positioned.json"
