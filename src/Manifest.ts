@@ -5,6 +5,8 @@ import {
   ServiceProfile,
 } from "@iiif/vocabulary/dist-commonjs";
 import {
+  Annotation,
+  AnnotationPage,
   Canvas,
   IManifestoOptions,
   IIIFResource,
@@ -336,6 +338,17 @@ export class Manifest extends IIIFResource {
 
   getViewingHint(): ViewingHint | null {
     return this.getProperty("viewingHint");
+  }
+
+  // Annotations with non-painting motivations (e.g. commenting, activating)
+  // referenced from the Manifest's own top-level "annotations" property,
+  // as distinct from Scene/Canvas's own "annotations" property (see
+  // Scene.getNonContentAnnotations() / Canvas.getNonContentAnnotations()).
+  getNonContentAnnotations(): Annotation[] {
+    return AnnotationPage.parseNonContentAnnotations(
+      this.__jsonld.annotations,
+      this.options
+    );
   }
 
   _annotationIdMap: any;

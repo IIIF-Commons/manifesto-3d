@@ -26,6 +26,7 @@ const DisplayedTypes: string[] = [
   "Sound",
   "Text"
 ];
+const ReferenceTypes: string[] = ["Annotation"];
 
 export class AnnotationBodyParser {
   static BuildFromJson(
@@ -37,7 +38,7 @@ export class AnnotationBodyParser {
         ? [].concat(jsonld.source)[0]["type"]
         : jsonld.type;
 
-    if (DisplayedTypes.includes(type))
+    if (DisplayedTypes.includes(type) || ReferenceTypes.includes(type))
       return new AnnotationBody(jsonld, options);
     else if (LightTypes.includes(type)) return new Light(jsonld, options);
     else if (CameraTypes.includes(type)) return new Camera(jsonld, options);

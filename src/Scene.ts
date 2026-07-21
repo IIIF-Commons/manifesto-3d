@@ -5,8 +5,6 @@ import {
   ManifestResource,
   Color,
 } from "./internal";
-// @ts-ignore
-import flattenDeep from "lodash/flattenDeep";
 
 export class Scene extends ManifestResource {
   constructor(jsonld: any, options: IManifestoOptions) {
@@ -70,23 +68,9 @@ export class Scene extends ManifestResource {
   // Annotations not rendered as part of the Canvas
   // Have non-painting motivations and are listed in Canvas annotations property, not items property
   getNonContentAnnotations(): Annotation[] {
-    const annotationPages = (this.__jsonld.annotations || [])
-      .filter(
-        (annotationPage) =>
-          annotationPage && annotationPage.type === "AnnotationPage"
-      )
-      .map(
-        (annotationPage) => new AnnotationPage(annotationPage, this.options)
-      ) as AnnotationPage[];
-    if (!annotationPages.length) return [];
-
-    const annotationsNested = annotationPages.map((page) =>
-      page.getItems()
-    ) as Annotation[][];
-    const annotationsFlat = flattenDeep(annotationsNested) as Annotation[];
-
-    return annotationsFlat.map(
-      (annotation) => new Annotation(annotation, this.options)
+    return AnnotationPage.parseNonContentAnnotations(
+      this.__jsonld.annotations,
+      this.options
     );
   }
 }

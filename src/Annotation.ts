@@ -20,7 +20,7 @@ export class Annotation extends ManifestResource {
   /**
   In spite of its name, this method returns an array of objects, each of which
   represents a potential body annotations
-  
+
   @see{ https://iiif.io/api/cookbook/recipe/0033-choice/ }
   **/
   getBody(): AnnotationBody[] {
@@ -30,7 +30,7 @@ export class Annotation extends ManifestResource {
     A bodyValue property in the annotation json will short circuit
     the parsing process and be interpreted as a shorthand version of
     a TextualBody resource defining as the body
-    
+
     This procedure is allowed, see Web Annotation Data Model section 3.2.5
     https://www.w3.org/TR/annotation-model/#string-body
     */
@@ -78,7 +78,7 @@ export class Annotation extends ManifestResource {
   seems to be the use case for this
   **/
   private parseBodiesFromItemsList(rawbodies: any): AnnotationBody[] {
-    let retVal: AnnotationBody[] = [];
+    const retVal: AnnotationBody[] = [];
     for (var bd of [].concat(rawbodies)) {
       retVal.push(this.parseSingletonBody(bd));
     }
@@ -98,12 +98,12 @@ export class Annotation extends ManifestResource {
   getBody3D function was developed in the early stages of the 3D API Feb-March 2024
   as alternative to the existing Annotation getBody function, but the signature for
   getBody3D was chosen to be a single object instance, not an array.
-  
+
   At this stage, the merging of the 2D API anf the draft 3D API has been completed, so
-  3D applications can use the getBody() function to retrieve the body of an Annotation intended 
-  to target a scene. For compatibily the return value of the function is still an 
+  3D applications can use the getBody() function to retrieve the body of an Annotation intended
+  to target a scene. For compatibily the return value of the function is still an
   array.
-  
+
   3D clients using getBody are responsible for choosing the appropriate instance from the
   returned array. In most cases this will be the sole 0th element.
   **/
@@ -136,7 +136,8 @@ export class Annotation extends ManifestResource {
 
     if (rawTarget.type && rawTarget.type == "SpecificResource") {
       return new SpecificResource(rawTarget, this.options);
-    } else if (["Scene", "Canvas"].includes(rawTarget.type)) {
+    } else if (["Scene", "Canvas", "Annotation"].includes(rawTarget.type)) {
+      // Targets for Scene, Canvas, and Annotation are likely to be bare references
       return rawTarget;
     } else {
       throw new Error("unknown target specified");

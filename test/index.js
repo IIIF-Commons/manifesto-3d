@@ -153,7 +153,11 @@ function run_iiif3d_tests(){
 
     describe("10_content_state" , function(){
         importTest('astronaut_comment_scope', './tests_3d/10_content_state/astronaut_comment_scope.js');
-    }); 
+    });
+
+    describe("11_activating_annotations" , function(){
+        importTest('astronaut_comment_activating_motivation', './tests_3d/11_activating_annotations/astronaut_comment_activating_motivation.js');
+    });
 }
 
 describe("iiif-3d tests", run_iiif3d_tests );
